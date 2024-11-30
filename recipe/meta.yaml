@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/yaqd-new-era-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/yaqd-new-era-{{ version }}.tar.gz
   sha256: bed0dd006f0f0628597b1090c189c916372093088c6baa06bb2166b76ec73656
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - yaqd-new-era-ne1000 = yaqd_new_era._new_era_ne1000:NewEraNe1000.main
@@ -19,11 +19,11 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - flit
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - flit
     - yaqd-core >=2020.06.3
     - pyserial
@@ -36,6 +36,7 @@ test:
     - yaqd-new-era-ne1000 --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://yaq.fyi
